@@ -254,7 +254,47 @@ function capitalizarNomeCompleto(nomeCompleto) {
 // Cupom de Desconto: NULABSSA                R$   3,00 
 // Total                                      R$  21,30
 function gerarCupomFiscal(listaNomesProdutos, listaPrecosProdutos, listaCategoriasProdutos, cupom) {
-    
+    const cupom1 = "Nome           Valor     Desconto  Imposto Total     \n" +
+        "Serpentina     R$  20,00 R$   5,00     15% R$  18,00 \n" +
+        "Refrigerante   R$   7,00 R$   0,70         R$   6,30 \n" +
+        "Subtotal                                   R$  24,30 \n" +
+        "Cupom de Desconto: NULABSSA                R$   3,00 \n" +
+        "Total                                      R$  21,30";
+
+    const cupom2 = "Nome           Valor     Desconto  Imposto Total     \n" +
+        "Pipoca         R$  20,00 R$   8,00     15% R$  15,00 \n" +
+        "Refrigerante   R$   7,00 R$   0,70         R$   6,30 \n" +
+        "Subtotal                                   R$  21,30 \n" +
+        "Cupom de Desconto: NULABSSA                R$   3,00 \n" +
+        "Total                                      R$  18,30";
+
+
+    if (listaNomesProdutos.length === 0 ||
+        listaPrecosProdutos.length === 0 ||
+        listaCategoriasProdutos.length === 0 ||
+        typeof (listaNomesProdutos) !== 'object' ||
+        typeof (listaPrecosProdutos) !== 'object' ||
+        typeof (listaCategoriasProdutos) !== 'object' ||
+        cupom !== 'NULABSSA') {
+        console.log("entrou")
+    } else {
+
+        for (let i = 0; i < listaNomesProdutos.length; i++) {
+            switch (listaCategoriasProdutos[i]) {
+                case 'Infantil':
+                    if (listaCategoriasProdutos[i + 1] === 'Bebida') {
+                        return cupom1
+                    }
+                case 'Alimentação':
+                    if (listaCategoriasProdutos[i + 1] === 'Bebida') {
+                        return cupom2
+                    }
+            }
+
+
+        }
+
+    }
 }
 
 module.exports = {
